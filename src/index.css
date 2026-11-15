@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --color-obsidian: #08080a;
+  --color-obsidian-elevated: #101014;
+  --color-champagne: #d4af37;
+  --color-champagne-light: #ebd183;
+  --color-ivory: #f5f2eb;
+  --color-ivory-muted: #b3ada0;
+}
+
+@layer base {
+  html {
+    background-color: #08080a;
+    color: #f5f2eb;
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    background-color: #08080a;
+    color: #f5f2eb;
+    overflow-x: clip;
+  }
+}
+
+/* Subtle champagne ambient glow utility (compositor-friendly) */
+.studio-ambient-glow {
+  background: radial-gradient(
+    60% 50% at 50% 0%,
+    rgba(212, 175, 55, 0.08) 0%,
+    rgba(212, 175, 55, 0.02) 45%,
+    transparent 100%
+  );
+}
+
+.studio-card-glow {
+  background: radial-gradient(
+    circle at top right,
+    rgba(212, 175, 55, 0.06),
+    transparent 65%
+  );
+}
+
+/* Slow rotational keyframe for outer orbital hairline */
+@keyframes orbit-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-orbit-slow {
+  animation: orbit-slow 48s linear infinite;
+}
+
+.animate-orbit-reverse {
+  animation: orbit-reverse 64s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-orbit-slow,
+  .animate-orbit-reverse {
+    animation: none;
+  }
+}
